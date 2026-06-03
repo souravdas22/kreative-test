@@ -7,6 +7,8 @@ import Sidebar from '../components/chat/Sidebar';
 import MainChat from '../components/chat/MainChat';
 import { logout } from '../features/auth/authSlice';
 
+const seenMessages = new Set();
+
 export default function ChatDashboard() {
   const dispatch = useDispatch();
   const currentUser = useSelector((state) => state.auth.user);
@@ -16,6 +18,18 @@ export default function ChatDashboard() {
     const unsubscribe = onMessage(messaging, (payload) => {
       console.log('🔥 [FCM Foreground] Message received!', payload);
       
+      const messageId = payload.messageId;
+      if (messageId && seenMessages.has(messageId)) {
+        console.log('[FCM Foreground] Duplicate message ignored.');
+        return;
+      }
+      if (messageId) {
+        seenMessages.add(messageId);
+        if (seenMessages.size > 50) {
+          seenMessages.delete(seenMessages.values().next().value);
+        }
+      }
+
       const incomingRoomId = payload.data?.roomId;
       console.log(`[FCM Foreground] Incoming Room ID: ${incomingRoomId} | Currently Active Room ID: ${activeRoomId}`);
       
