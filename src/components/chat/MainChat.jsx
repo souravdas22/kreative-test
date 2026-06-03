@@ -169,7 +169,7 @@ export default function MainChat() {
 
       try {
         const token = localStorage.getItem('chat_token');
-        await fetch(`http://localhost:1947/api/v1/chat/upload/${activeRoomId}`, {
+        await fetch(`${import.meta.env.VITE_BASE_URL || 'http://localhost:1947'}/api/v1/chat/upload/${activeRoomId}`, {
           method: 'POST',
           headers: {
             'Authorization': `Bearer ${token}`

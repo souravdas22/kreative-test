@@ -1,8 +1,8 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 
-const BASE_URL = 'http://localhost:1947/api/v1/chat';
-const IMAGE_BASE_URL = 'https://kreativ-vault.dedicateddevelopers.us/uploads/users/';
-const MESSAGE_FILE_BASE_URL = 'http://127.0.0.1:1947/uploads/chat/';
+const BASE_URL = `${import.meta.env.VITE_BASE_URL || 'http://localhost:1947'}/api/v1/chat`;
+const IMAGE_BASE_URL = `${import.meta.env.VITE_BASE_URL || 'http://localhost:1947'}/uploads/users/`;
+const MESSAGE_FILE_BASE_URL = `${import.meta.env.VITE_BASE_URL || 'http://localhost:1947'}/uploads/chat/`;
 
 const getFullImageUrl = (imageName) => {
   if (!imageName) return null;

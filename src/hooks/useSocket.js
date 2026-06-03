@@ -3,7 +3,7 @@ import { io } from 'socket.io-client';
 import { useDispatch, useSelector } from 'react-redux';
 import { setSocketConnection, addMessage, updateMessagesSeen, fetchThreads } from '../features/chat/chatSlice';
 
-const SOCKET_URL = 'http://localhost:1947';
+const SOCKET_URL = import.meta.env.VITE_BASE_URL || 'http://localhost:1947';
 
 export const useSocket = () => {
   const dispatch = useDispatch();

@@ -45,7 +45,7 @@ export default function Login() {
         deviceToken = "not-granted";
       }
 
-      const response = await fetch('http://127.0.0.1:1947/api/v1/auth/login-user', {
+      const response = await fetch(`${import.meta.env.VITE_BASE_URL || 'http://localhost:1947'}/api/v1/auth/login-user`, {
         method: 'POST',
         headers: {
           'accept': '*/*',
