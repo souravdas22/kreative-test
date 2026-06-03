@@ -24,7 +24,7 @@ export default function ChatDashboard() {
         const notificationTitle = payload.notification?.title || 'New Message';
         const notificationOptions = {
           body: payload.notification?.body || 'You have received a new message.',
-          icon: '/favicon.ico'
+          icon: '/favicon.svg'
         };
 
         if ('Notification' in window && Notification.permission === 'granted') {
